@@ -28,8 +28,8 @@
 <div class="app">
     <!-- Header -->
     <div class="header">
-        <div class="header-navbar__contact">
-            <div class="header-navbar__contact-item">
+        <div id="header" class="header-navbar__contact">
+            <div id="navContact" class="header-navbar__contact-item">
                 <i class="fa-sharp fa-solid fa-house-chimney"></i>
                 <a href="">Hệ thống cửa hàng</a>
             </div>
@@ -38,7 +38,7 @@
                 <a href="">Mua hàng online: 0969436769</a>
             </div>
         </div>
-        <div class="header-navbar-feat">
+        <div id="navbar" class="header-navbar-feat header-navbar-feat--index">
             <div class="grid">
                 <div class="header-navbar-container">
                     <div class="header-navbar-item">
@@ -75,7 +75,62 @@
                                         <a onclick="logOut()" class="logOut" href=""></a>
                                     </div>
                                 </li>
-                                <li><span><i class="bi bi-bag-fill"></i> Giỏ hàng</span></li>
+                                <li class="mini-cart-contain"><a href="cart-products.html">
+                                    <span><i class="bi bi-bag-fill"></i> Giỏ hàng</span><span id="count"></span></a>
+                                    <div class="mini-cart">
+                                        <h3>Thông tin giỏ hàng</h3>
+                                        <div id="showMiniCart" class="mini-cart-body">
+                                            <a href="cart-products.html" class="mini-cart-item">
+                                                <div class="mini-cart-products">
+                                                    <div class="mini-cart-img-contain">
+                                                        <img src="/img/Products/GUITAR%20PLUS%20F0%20LIMITED%20DC%20.webp" alt="">
+                                                    </div>
+                                                    <h3>GUITAR PLUS F0 LIMITED DC</h3>
+                                                </div>
+                                                <div class="mini-cart-price">
+                                                    <p>599.000đ</p>
+                                                </div>
+                                            </a>
+                                            <a href="cart-products.html" class="mini-cart-item">
+                                                <div class="mini-cart-products">
+                                                    <div class="mini-cart-img-contain">
+                                                        <img src="/img/Products/GUITAR%20PLUS%20F0%20LIMITED%20DC%20.webp" alt="">
+                                                    </div>
+                                                    <h3>GUITAR PLUS F0 LIMITED DC</h3>
+                                                </div>
+                                                <div class="mini-cart-price">
+                                                    <p>599.000đ</p>
+                                                </div>
+                                            </a>
+                                            <a href="cart-products.html" class="mini-cart-item">
+                                                <div class="mini-cart-products">
+                                                    <div class="mini-cart-img-contain">
+                                                        <img src="/img/Products/GUITAR%20PLUS%20F0%20LIMITED%20DC%20.webp" alt="">
+                                                    </div>
+                                                    <h3>GUITAR PLUS F0 LIMITED DC</h3>
+                                                </div>
+                                                <div class="mini-cart-price">
+                                                    <p>599.000đ</p>
+                                                </div>
+                                            </a>
+                                            <a href="cart-products.html" class="mini-cart-item">
+                                                <div class="mini-cart-products">
+                                                    <div class="mini-cart-img-contain">
+                                                        <img src="/img/Products/GUITAR%20PLUS%20F0%20LIMITED%20DC%20.webp" alt="">
+                                                    </div>
+                                                    <h3>GUITAR PLUS F0 LIMITED DC</h3>
+                                                </div>
+                                                <div class="mini-cart-price">
+                                                    <p>599.000đ</p>
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <div class="mini-cart-footer">
+                                            <p class="mini-cart__products-remain">Còn <span id="productsRemain"></span> sản phẩm</p>
+                                            <a href="cart-products.html">Xem giỏ hàng</a>
+                                        </div>
+                                    </div>
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -83,7 +138,7 @@
             </div>
         </div>
     </div>
-    <div class="path">
+    <div class="path path-header">
         <div class="grid">
             <h1>Trang chủ</h1>
         </div>
@@ -122,29 +177,30 @@
             </div>
             <div class="best-sale-products">
                 <div class="grid__row draw">
-<!--                    <div class="grid__column-12">-->
-<!--                        <div class="best-sale-products-item-wrap">-->
-<!--                            <div style="background-image: url(https://product.hstatic.net/200000388065/product/859cf541-b3c3-40bc-a43c-2ab90feb1e55_6f98e69436884d77a3cf97a4b0f9683f_large.jpg)"-->
-<!--                                 class="best-sale-products-img">-->
+                    <!--                    <div class="grid__column-12">-->
+                    <!--                        <div class="best-sale-products-item-wrap">-->
+                    <!--                            <div style="background-image: url(https://product.hstatic.net/200000388065/product/859cf541-b3c3-40bc-a43c-2ab90feb1e55_6f98e69436884d77a3cf97a4b0f9683f_large.jpg)"-->
+                    <!--                                 class="best-sale-products-img">-->
 
-<!--                            </div>-->
-<!--                            <div class="best-sale-products-desc">-->
-<!--                                <h3 class="best-sale-products__title name-products">Amp Marshal MG10G 10W</h3>-->
-<!--                                <h3 class="best-sale-products__price price">2.000.000 <span>đ</span></h3>-->
-<!--                            </div>-->
-<!--                            <a id="add-cart" class="best-sale-products__link cart-link add-cart" href="cart-products.html">-->
-<!--                                <div class="best-sale-products__extention">-->
-<!--                                    <span>Thêm vào giỏ hàng</span>-->
-<!--                                </div>-->
-<!--                            </a>-->
-<!--                        </div>-->
-<!--                    </div>-->
+                    <!--                            </div>-->
+                    <!--                            <div class="best-sale-products-desc">-->
+                    <!--                                <h3 class="best-sale-products__title name-products">Amp Marshal MG10G 10W</h3>-->
+                    <!--                                <h3 class="best-sale-products__price price">2.000.000 <span>đ</span></h3>-->
+                    <!--                            </div>-->
+                    <!--                            <a id="add-cart" class="best-sale-products__link cart-link add-cart" href="cart-products.html">-->
+                    <!--                                <div class="best-sale-products__extention">-->
+                    <!--                                    <span>Thêm vào giỏ hàng</span>-->
+                    <!--                                </div>-->
+                    <!--                            </a>-->
+                    <!--                        </div>-->
+                    <!--                    </div>-->
                 </div>
             </div>
         </div>
     </div>
     <div class="extention">
-        <div class="extention-img" style="background-image: url(https://theme.hstatic.net/200000388065/1000766714/14/background_banner.jpg?v=111)">
+        <div class="extention-img"
+             style="background-image: url(https://theme.hstatic.net/200000388065/1000766714/14/background_banner.jpg?v=111)">
 
         </div>
         <div class="extention-service">
@@ -152,28 +208,32 @@
                 <div class="grid__row">
                     <div class="grid__column-12-4">
                         <div class="extention-service-wrap">
-                            <img src="https://theme.hstatic.net/200000388065/1000766714/14/vice_item_1.png?v=111" alt="">
+                            <img src="https://theme.hstatic.net/200000388065/1000766714/14/vice_item_1.png?v=111"
+                                 alt="">
                             <h3>Giao hàng miễn phí</h3>
                             <p>với đơn hàng từ 500k trở lên</p>
                         </div>
                     </div>
                     <div class="grid__column-12-4">
                         <div class="extention-service-wrap">
-                            <img src="https://theme.hstatic.net/200000388065/1000766714/14/vice_item_2.png?v=111" alt="">
+                            <img src="https://theme.hstatic.net/200000388065/1000766714/14/vice_item_2.png?v=111"
+                                 alt="">
                             <h3>Hỗ trợ online 24/7</h3>
                             <p>Hỗ trợ online/offline 24/7</p>
                         </div>
                     </div>
                     <div class="grid__column-12-4">
                         <div class="extention-service-wrap">
-                            <img src="https://theme.hstatic.net/200000388065/1000766714/14/vice_item_3.png?v=111" alt="">
+                            <img src="https://theme.hstatic.net/200000388065/1000766714/14/vice_item_3.png?v=111"
+                                 alt="">
                             <h3>Đặt hàng trực tuyến</h3>
                             <p>Hotline : 0969436769</p>
                         </div>
                     </div>
                     <div class="grid__column-12-4">
                         <div class="extention-service-wrap">
-                            <img src="https://theme.hstatic.net/200000388065/1000766714/14/vice_item_4.png?v=111" alt="">
+                            <img src="https://theme.hstatic.net/200000388065/1000766714/14/vice_item_4.png?v=111"
+                                 alt="">
                             <h3>Miễn phí đổi trả</h3>
                             <p>Trong vòng 7 ngày</p>
                         </div>
@@ -213,15 +273,19 @@
 <script>
 
     let listProducts = JSON.parse(localStorage.getItem('list_product'));
+    if (listProducts == null) {
+        listProducts = [];
+    }
     console.log(listProducts)
     let currentUser = localStorage.getItem("current_user");
+
     function showListProducts() {
         let draw = '';
         let link;
         if (currentUser !== null) {
-            link = "cart-products.html"
+            link = "javascript:void(0)"; // disable thẻ a. ko bị nhảy, không chuyển trang
         } else {
-            link = "login.html"
+            link = "login.html";
         }
         for (let i = 0; i < listProducts.length; i++) {
             draw += `<div class="grid__column-12">
@@ -235,7 +299,7 @@
                                 <h3 class="best-sale-products__price price">${listProducts[i].price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
             } <span>đ</span></h3>
                             </div>
-                            <a id="${listProducts[i].id}" class="best-sale-products__link cart-link add-cart" href=${link}  onclick="getIdProducts(${listProducts[i].id})">
+                            <a id="${listProducts[i].id}" class="best-sale-products__link cart-link add-cart" href=${link} onclick="getIdProducts(${listProducts[i].id})">
                                 <div class="best-sale-products__extention">
                                     <span>Thêm vào giỏ hàng</span>
                                 </div>
@@ -256,12 +320,9 @@
         document.querySelector('.account-cart').innerHTML = "Giỏ hàng";
         document.querySelector('.logOut').innerHTML = "Đăng xuất";
         document.querySelector('.logOut').style.color = "red";
-        // document.querySelector('.best-sale-products-item-wrap a').href = "#";
         document.querySelector('.account-cart').href = "cart-products.html";
         document.querySelector('.sign-up').href = "#";
-        // document.getElementById("add-cart").href = "car"
-        // document.querySelector('.add-cart').href = "cart-products.html";
-        // console.log(document.querySelector('.add-cart').href);
+
     } else {
         document.querySelector('.logOut').style.display = "none";
     }
@@ -271,19 +332,88 @@
         localStorage.removeItem("idKey");
         location.reload();
     }
-    // lấy toàn bộ thông tin sản phẩm lên local push vào mảng để vẽ
-    let detectID = [];
 
-    function getIdProducts(id) {
-        detectID.push(id);
-        localStorage.setItem('detectID',JSON.stringify(detectID));
+    // lấy toàn bộ thông tin sản phẩm lên local push vào mảng để vẽ
+
+    let cartList = JSON.parse(localStorage.getItem('detectID'));
+    if (cartList == null) {
+        cartList = []
     }
 
+    function countProducts() {
+        let countProducts = 0;
+        for (let i = 0; i < cartList.length; i++) {
+            countProducts += cartList[i].quantity;
+        }
+        document.getElementById('count').innerHTML = countProducts;
+    }
 
+    countProducts()
 
+    function getIdProducts(id) {
+        let product = findById(id);
+        let status = false
+        for (let i = 0; i < cartList.length; i++) {
+            if (cartList[i].id == id) {
+                cartList[i].quantity += 1;
+                status = true
+                break;
+            }
+        }
+        if (status == false) {
+            cartList.push({
+                id: id,
+                price: product.price,
+                name: product.name,
+                quantity: 1,
+                image: product.img
+            });
+        }
+        localStorage.setItem('detectID', JSON.stringify(cartList));
+        countProducts()
+        showMiniCart()
+    }
 
+    console.log(typeof (cartList))
+
+    function findById(id) {
+        for (let i = 0; i < listProducts.length; i++) {
+            if (listProducts[i].id == id) {
+                return listProducts[i];
+            }
+        }
+        return null;
+    }
+
+//     lấy sản phẩm về mini cart
+    console.log(cartList);
+
+    function showMiniCart() {
+        let showMiniCart = "";
+        for (let i = 0; i < cartList.length; i++) {
+            showMiniCart += `<a href="cart-products.html" class="mini-cart-item">
+                                                <div class="mini-cart-products">
+                                                    <div class="mini-cart-img-contain">
+                                                        <img src=${cartList[i].image} alt="">
+                                                    </div>
+                                                    <h3>${cartList[i].name}</h3>
+                                                </div>
+                                                <div class="mini-cart-price">
+                                                    <p>${formatNumber(cartList[i].price)}</p>
+                                                </div>
+                                            </a>`;
+        }
+        document.getElementById('showMiniCart').innerHTML = showMiniCart;
+    }
+
+    showMiniCart();
+
+    function formatNumber(number) {
+        return new Intl.NumberFormat('de-DE', {style: 'currency', currency: 'VND'}).format(number)
+    }
 </script>
 <script src="script/slider.js"></script>
+<script src="script/fixedBar.js"></script>
 </body>
 
 </html>
