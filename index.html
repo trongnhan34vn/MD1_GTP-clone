@@ -72,7 +72,7 @@
                                     <div class="nav-account-container">
                                         <a class="sign-up account-info" href="register.html">Đăng kí</a>
                                         <a class="sign-in account-cart" href="login.html">Đăng nhập</a>
-                                        <a onclick="logOut()" class="logOut" href=""></a>
+                                        <a onclick="logOut()" class="logOut" href="#"></a>
                                     </div>
                                 </li>
                                 <li class="mini-cart-contain"><a id="cart-product" href="cart-products.html">
@@ -80,11 +80,12 @@
                                     <div class="mini-cart">
                                         <h3>Thông tin giỏ hàng</h3>
                                         <div id="showMiniCart" class="mini-cart-body">
-<!--                                            Đây là giỏ hàng-->
-<!--                                            <img src="https://bizweb.dktcdn.net/100/187/527/themes/504306/assets/empty_cart.png?1666747878392" alt="">-->
+                                            <!--                                            Đây là giỏ hàng-->
+                                            <!--                                            <img src="https://bizweb.dktcdn.net/100/187/527/themes/504306/assets/empty_cart.png?1666747878392" alt="">-->
                                         </div>
                                         <div class="mini-cart-footer">
-                                            <p class="mini-cart__products-remain">Còn <span id="productsRemain"></span> sản phẩm</p>
+                                            <p class="mini-cart__products-remain">Còn <span id="productsRemain"></span>
+                                                sản phẩm</p>
                                             <a id="mini-cart-product" href="cart-products.html">Xem giỏ hàng</a>
                                         </div>
                                     </div>
@@ -229,7 +230,7 @@
 </div>
 
 <script>
-
+    let listUsers = JSON.parse(localStorage.getItem("list_user"));
     let listProducts = JSON.parse(localStorage.getItem('list_product'));
     if (listProducts == null) {
         listProducts = [];
@@ -268,9 +269,10 @@
     }
 
     showListProducts()
-
+    let checkLogin = false;
     // Kiểm tra đăng nhập
     if (currentUser !== null) {
+        checkLogin = true;
         document.getElementById('account').innerHTML = currentUser.firstName + " " + currentUser.lastName;
         document.querySelector('.account-info').innerHTML = "Thông tin tài khoản";
         document.querySelector('.account-info').href = "account-information.html";
@@ -278,49 +280,30 @@
         document.querySelector('.logOut').innerHTML = "Đăng xuất";
         document.querySelector('.logOut').style.color = "red";
         document.querySelector('.account-cart').href = "cart-products.html";
+
     } else {
         document.querySelector('.logOut').style.display = "none";
         document.getElementById('cart-product').href = "login.html";
         document.getElementById('mini-cart-product').href = "login.html";
+        // document.getElementById('count').innerHTML = 0;
     }
 
-    // Đăng xuất
 
-    function logOut() {
-        localStorage.removeItem("current_user");
-        localStorage.removeItem("idKey");
-        location.reload();
-    }
-
+    console.log("khoa béo")
     // lấy toàn bộ thông tin sản phẩm lên local push vào mảng để vẽ
+
+    // Lấy giỏ hàng của User về cartList
 
     let cartList = JSON.parse(localStorage.getItem('cartList'));
     if (cartList == null) {
         cartList = [];
     }
 
-    function countProducts() {
-        let remainProduct;
-        let countProducts = 0;
-        for (let i = 0; i < cartList.length; i++) {
-            countProducts += cartList[i].quantity;
-        }
-        document.getElementById('count').innerHTML = countProducts;
-        if(cartList.length < 4) {
-            remainProduct = 0;
-        } else {
-            remainProduct = countProducts - 4;
-        }
-        document.getElementById('productsRemain').innerHTML = remainProduct;
-    }
-
-    countProducts()
-
     function getIdProducts(id) {
         let product = findById(id);
-        let status = false
+        let status = false;
         for (let i = 0; i < cartList.length; i++) {
-            if (cartList[i].id == id) {
+            if (cartList[i].id == id && cartList[i].userId == currentUser.id) {
                 cartList[i].quantity += 1;
                 console.log(cartList[i].quantity);
                 console.log(cartList.length)
@@ -343,6 +326,36 @@
         showMiniCart()
     }
 
+    function countProducts() {
+        let remainProduct = 0;
+        let countProducts = 0;
+        let arrUserProduct = [];
+        if(currentUser !== null) {
+            for (let i = 0; i < cartList.length; i++) {
+                if(cartList[i].userId == currentUser.id) {
+                    arrUserProduct.push(cartList[i]);
+                }
+            }
+            console.log(arrUserProduct)
+            if (currentUser !== null) {
+                for (let i = 0; i < arrUserProduct.length; i++) {
+                    if (arrUserProduct[i].userId == currentUser.id) {
+                        countProducts += arrUserProduct[i].quantity;
+                    }
+                }
+            }
+            if (arrUserProduct.length < 4) {
+                remainProduct = 0;
+            } else {
+                remainProduct = countProducts - 4;
+            }
+        }
+        document.getElementById('count').innerHTML = countProducts;
+        document.getElementById('productsRemain').innerHTML = remainProduct;
+    }
+
+    countProducts()
+
     function findById(id) {
         for (let i = 0; i < listProducts.length; i++) {
             if (listProducts[i].id == id) {
@@ -352,32 +365,52 @@
         return null;
     }
 
-//     lấy sản phẩm về mini cart
+    //     lấy sản phẩm về mini cart
 
     function showMiniCart() {
+        let size;
         let showMiniCart = "";
-        let  size = cartList.length>=4 ? 4 : cartList.length
+        let arrMini = [];
+        if (currentUser !== null) {
+        for (let i = 0; i < cartList.length; i++) {
+            if (cartList[i].userId == currentUser.id) {
+                arrMini.push(cartList[i])
+            }
+        }
+        size = arrMini.length >= 4 ? 4 : arrMini.length
 
-        for (let i = 0; i < size; i++) {
-            showMiniCart += `<a href="cart-products.html" class="mini-cart-item">
+            console.log("ghfygfyfyfyf")
+            for (let i = 0; i < size; i++) {
+                showMiniCart += `<a href="cart-products.html" class="mini-cart-item">
                                                 <div class="mini-cart-products">
                                                     <div class="mini-cart-img-contain">
-                                                        <img src=${cartList[i].image} alt="">
+                                                        <img src=${arrMini[i].image} alt="">
                                                     </div>
-                                                    <h3>${cartList[i].name}</h3>
+                                                    <h3>${arrMini[i].name}</h3>
                                                 </div>
                                                 <div class="mini-cart-price">
-                                                    <p>${formatNumber(cartList[i].price)}</p>
+                                                    <p>${formatNumber(arrMini[i].price)}</p>
                                                 </div>
                                             </a>`;
+            }
+            console.log(showMiniCart)
         }
         document.getElementById('showMiniCart').innerHTML = showMiniCart;
     }
 
-    showMiniCart();
+    showMiniCart()
+
 
     function formatNumber(number) {
         return new Intl.NumberFormat('de-DE', {style: 'currency', currency: 'VND'}).format(number)
+    }
+
+    // Đăng xuất
+
+    function logOut() {
+        localStorage.removeItem("current_user");
+        localStorage.removeItem("idKey");
+        location.reload();
     }
 </script>
 <script src="script/slider.js"></script>

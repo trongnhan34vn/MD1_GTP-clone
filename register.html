@@ -97,7 +97,7 @@
                 <input name="lName" oninput="validate()" id="lastName" placeholder="Tên" type="text">
                 <span id="validateLName"></span>
             </div>
-            <form onclick="getGender()" id="gender" class="register-form__radio-input">
+            <form action="#n" onclick="getGender()" id="gender" class="register-form__radio-input">
                 <label for="radio1" class="register-form__radio-input-item">
                     <input value="male" id="radio1" name="gender" type="radio"><span> Nam</span>
                 </label>
@@ -182,11 +182,13 @@
         console.log(typeof gender);
         // Check Validate Gender
         if (gender.trim() == '') {
+            gender = "";
             checkValidate = false;
-            document.getElementById('validateGender').innerHTML = "Gender is required!"
+            document.getElementById('validateGender').innerHTML = "Gender is required!";
+            return;
         } else {
             checkValidate = true;
-            document.getElementById('validateGender').innerHTML = ""
+            document.getElementById('validateGender').innerHTML = "";
         }
     }
 
@@ -221,24 +223,14 @@
         }
 
         // Check Validate Gender
-        if (gender.trim() == '') {
-            checkValidate = false;
-            document.getElementById('validateGender').innerHTML = "Gender is required!"
-            return;
-        } else {
-            checkValidate = true;
-            document.getElementById('validateGender').innerHTML = ""
-        }
-
-        // Check Validate Birth
-        if (birth.trim() == '') {
-            checkValidate = false;
-            document.getElementById('validateBirth').innerHTML = "Date of Birth is required!";
-            return;
-        } else {
-            document.getElementById('validateBirth').innerHTML = "";
-            checkValidate = true;
-        }
+        // if (gender.trim() == '') {
+        //     checkValidate = false;
+        //     document.getElementById('validateGender').innerHTML = "Gender is required!"
+        //     return;
+        // } else {
+        //     checkValidate = true;
+        //     document.getElementById('validateGender').innerHTML = ""
+        // }
 
         // Check Validate Email
         if (email.trim() === '') {
@@ -296,12 +288,15 @@
         }
     }
 
+    let cartList = JSON.parse(localStorage.getItem('cartList'));
+
+    console.log(cartList);
     // Tạo hàm đăng kí
     function register() {
         console.log(checkValidate);
         if (checkValidate) {
             let id = 0;
-            let user = new User(id, firstName, lastName, gender, birth, email, password)
+            let user = new User(id, firstName, lastName, gender, birth, email, password, cartList);
             if (listUser.length == 0) {
                 id = 1;
                 user.setID(id);
@@ -313,8 +308,15 @@
             localStorage.removeItem('list_user');
             localStorage.setItem('list_user', JSON.stringify(listUser));
             location.href = 'login.html';
+        } else {
+            document.getElementById('validatePassword').innerHTML = "Please input the password!";
+            document.getElementById('validateRePassword').innerHTML = "Please input the re-password!";
+            document.getElementById('validateFName').innerHTML = "Please input the first name!";
+            document.getElementById('validateLName').innerHTML = "Please input the last name!";
+            document.getElementById('validateEmail').innerHTML = "Please input email!";
         }
     }
+
 
     // Check định dạng Email
     function validateEmail(mail) {

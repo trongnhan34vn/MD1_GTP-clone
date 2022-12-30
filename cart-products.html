@@ -182,6 +182,7 @@
     } else {
         cartList = Object.values(cartList);
     }
+    console.log(cartList)
 
 
     // vẽ vào bảng
@@ -192,11 +193,15 @@
         let total;
         //cach 1 , dùng phuong thuc map
         total = cartList.reduce(function (total, obj) {
-            return total + obj.price * obj.quantity     // obj => obj.price * obj.quantity
+            if (obj.userId == currentUser.id){
+            return total + obj.price * obj.quantity
+            }else return total
+            // obj => obj.price * obj.quantity
         }, 0)
         drawTable = "";
         for (let i = 0; i < cartList.length; i++) {
-            drawTable += `<tr id="deleteTable">
+            if (cartList[i].userId == currentUser.id) {
+                drawTable += `<tr id="deleteTable">
                     <td>
                         <img style="width: 80px"
                              src=${cartList[i].image}
@@ -212,6 +217,7 @@
                         <button onclick="deleteProduct(${cartList[i].id})">Delete</button>
                     </td>
                 </tr>`
+            }
         }
         document.getElementById('draw-table').innerHTML = drawTable;
         document.getElementById('totalPrice').innerText = formatNumber(total);
@@ -223,7 +229,7 @@
         // getIndexTd += test;
         let fixQuantity = +document.getElementById(getIndexTdinput).value;
         for (let i = 0; i < cartList.length; i++) {
-            if (cartList[i].id == index) {
+            if (cartList[i].id == index && cartList[i].userId==currentUser.id) {
                 cartList[i].quantity = fixQuantity;
                 break;
             }
@@ -235,16 +241,27 @@
 
     // Xoá
 
+
+
     function deleteProduct(index) {
         for (let i = 0; i < cartList.length; i++) {
-            if (cartList[i].id == index) {
+            if (cartList[i].id == index && cartList[i].userId == currentUser.id) {
                 cartList.splice(i, 1)
                 break;
             }
         }
+        let arrCurrentUser = [];
+        for (let i = 0; i < cartList.length; i++) {
+            if(cartList[i].userId == currentUser.id) {
+                arrCurrentUser.push(cartList[i]);
+            }
+        }
+        currentUser.cartUser = cartList;
+        localStorage.removeItem('current_user');
+        localStorage.setItem('current_user', JSON.stringify(currentUser));
         localStorage.removeItem('cartList');
         localStorage.setItem('cartList', JSON.stringify(cartList));
-        if (cartList.length == 0) {
+        if (arrCurrentUser.length == 0) {
             location.href = "index.html";
         }
         showCart()
@@ -260,7 +277,7 @@
         } else {
             listSearch = [];
             for (let i = 0; i < cartList.length; i++) {
-                if (cartList[i].name.toLowerCase().search(productSearch.toLowerCase()) !== -1) {
+                if (cartList[i].name.toLowerCase().search(productSearch.toLowerCase()) !== -1 && cartList[i].userId == currentUser.id) {
                     listSearch.push(cartList[i]);
                 }
                 console.log(cartList[i].name);
@@ -279,7 +296,8 @@
         }, 0);
         drawTable = "";
         for (let i = 0; i < listSearch.length; i++) {
-            drawTable += `<tr id="deleteTable">
+            if(cartList[i].userId == currentUser.id) {
+                drawTable += `<tr id="deleteTable">
                     <td>
                         <img style="width: 80px"
                              src=${listSearch[i].image}
@@ -295,6 +313,7 @@
 
                     </td>
                 </tr>`
+            }
         }
         document.getElementById('draw-table').innerHTML = drawTable;
         document.getElementById('totalPrice').innerHTML = formatNumber(total);
@@ -303,6 +322,9 @@
     // Xác nhận đơn hàng
 
     function checkOut() {
+        currentUser.cartUser = [];
+        localStorage.removeItem("current_user");
+        localStorage.setItem("current_user",JSON.stringify(currentUser));
         localStorage.removeItem("cartList");
         location.href = "validateOrder.html";
     }

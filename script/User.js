@@ -7,7 +7,9 @@ class User {
     email;
     password;
 
-	constructor (id,firstName, lastName, gender, birth, email, password) {
+    cartUser;
+
+	constructor (id,firstName, lastName, gender, birth, email, password, cartUser) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -15,7 +17,16 @@ class User {
         this.birth = birth;
         this.email = email;
         this.password = password;
+        this.cartUser = cartUser;
 	}
+
+    setCartUser(cartUser) {
+        this.cartUser = cartUser;
+    }
+
+    getCartUser() {
+        return this.cartUser;
+    }
 
     setID(id) {
         this.id = id;

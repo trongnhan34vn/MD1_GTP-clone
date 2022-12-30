@@ -65,14 +65,28 @@
                                         <button><i class="fa-solid fa-magnifying-glass"></i></button>
                                     </div>
                                 </li>
-                                <li class="nav-account"><span><i class="bi bi-person-circle"></i> Tài khoản</span>
+                                <li class="nav-account"><span><i class="bi bi-person-circle"></i> <span class="nav-acc-info">Tài khoản</span></span>
                                     <!-- Regis & Login -->
                                     <div class="nav-account-container">
-                                        <a href="register.html">Đăng kí</a>
-                                        <a href="login.html">Đăng nhập</a>
+                                        <a class="sign-up account-info" href="register.html">Đăng kí</a>
+                                        <a class="sign-in account-cart" href="login.html">Đăng nhập</a>
+                                        <a onclick="logOut()" class="logOut" href="login.html"></a>
                                     </div>
                                 </li>
-                                <li><span><i class="bi bi-bag-fill"></i> Giỏ hàng</span></li>
+                                <li class="mini-cart-contain"><a href="cart-products.html">
+                                    <span><i class="bi bi-bag-fill"></i> Giỏ hàng</span><span id="count"></span></a>
+                                    <div class="mini-cart">
+                                        <h3>Thông tin giỏ hàng</h3>
+                                        <div id="showMiniCart" class="mini-cart-body">
+
+                                        </div>
+                                        <div class="mini-cart-footer">
+                                            <p class="mini-cart__products-remain">Còn <span id="productsRemain"></span>
+                                                sản phẩm</p>
+                                            <a href="cart-products.html">Xem giỏ hàng</a>
+                                        </div>
+                                    </div>
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -179,21 +193,33 @@
     let newPassword;
     let reNewPassword;
     let checkValidate = false;
-
-    function getGender() {
-        gender = document.querySelector('input[name = gender]:checked').value;
-        console.log(typeof gender);
-        // Check Validate Gender
-        if (gender.trim() == '') {
-            checkValidate = true;
-            document.getElementById('validateGender').innerHTML = "Gender is required!"
-        } else {
-            checkValidate = true;
-            document.getElementById('validateGender').innerHTML = ""
-        }
+    let currentUser = JSON.parse(localStorage.getItem("current_user"));
+    let email = currentUser.email;
+    let listUsers = JSON.parse(localStorage.getItem("list_user"));
+    if(listUsers == null) {
+        listUsers = [];
     }
 
-    let currentUser = JSON.parse(localStorage.getItem("current_user"));
+    document.getElementById('email').value = email;
+    document.getElementById('firstName').value = currentUser.firstName;
+    document.getElementById('lastName').value = currentUser.lastName;
+    document.getElementById('birth').value = currentUser.birth;
+    document.querySelector('.nav-acc-info').innerHTML = currentUser.firstName + " " + currentUser.lastName;
+
+
+    // Thay pass current user
+    // function getGender() {
+    //     gender = document.querySelector('input[name = gender]:checked').value;
+    //     console.log(typeof gender);
+    //     // Check Validate Gender
+    //     if (gender.trim() == '') {
+    //         checkValidate = true;
+    //         document.getElementById('validateGender').innerHTML = "Gender is required!"
+    //     } else {
+    //         checkValidate = true;
+    //         document.getElementById('validateGender').innerHTML = ""
+    //     }
+    // }
 
     function validate() {
         currentPassword = document.getElementById('current-password').value;
@@ -267,12 +293,101 @@
                 if(birth !== "") {
                     currentUser.birth = birth;
                 }
+                // Thay pass trên listUser
+
+                for (let i = 0; i < listUsers.length; i++) {
+                    if(currentUser.id == listUsers[i].id) {
+                        listUsers[i].password = currentUser.password;
+                        listUsers[i].firstName = currentUser.firstName;
+                        listUsers[i].lastName = currentUser.lastName;
+                        listUsers[i].birth = currentUser.birth;
+                        listUsers[i].gender = currentUser.gender;
+                    }
+                }
             }
             localStorage.removeItem("current_user");
             localStorage.setItem("current_user", JSON.stringify(currentUser));
+            localStorage.removeItem("list_user");
+            localStorage.setItem("list_user", JSON.stringify(listUsers));
             location.href = "validateUser.html"
+        } else {
+            document.getElementById('validateCurrentPassword').innerHTML = "Please input current password!";
+            document.getElementById('validateNewPassword').innerHTML = "Please input new password!";
+            document.getElementById('validateReNewPassword').innerHTML = "Please input re-newpassword!";
         }
     }
+
+    let cartList = JSON.parse(localStorage.getItem('cartList'));
+    if (cartList == null) {
+        cartList = []
+    }
+
+    function countProducts() {
+        let remainProduct;
+        let countProducts = 0;
+        for (let i = 0; i < cartList.length; i++) {
+            countProducts += cartList[i].quantity;
+        }
+        document.getElementById('count').innerHTML = countProducts;
+        if (cartList.length == 0) {
+            remainProduct = 0;
+        } else {
+            remainProduct = countProducts - 4;
+        }
+        document.getElementById('productsRemain').innerHTML = remainProduct;
+    }
+
+    countProducts()
+
+
+    //     lấy sản phẩm về mini cart
+    console.log(cartList);
+    let  size = cartList.length>=4 ? 4 : cartList.length
+
+    function showMiniCart() {
+        let showMiniCart = "";
+        for (let i = 0; i < size; i++) {
+            showMiniCart += `<a href="cart-products.html" class="mini-cart-item">
+                                                <div class="mini-cart-products">
+                                                    <div class="mini-cart-img-contain">
+                                                        <img src=${cartList[i].image} alt="">
+                                                    </div>
+                                                    <h3>${cartList[i].name}</h3>
+                                                </div>
+                                                <div class="mini-cart-price">
+                                                    <p>${formatNumber(cartList[i].price)}</p>
+                                                </div>
+                                            </a>`;
+        }
+        document.getElementById('showMiniCart').innerHTML = showMiniCart;
+    }
+
+    showMiniCart();
+
+    function formatNumber(number) {
+        return new Intl.NumberFormat('de-DE', {style: 'currency', currency: 'VND'}).format(number)
+    }
+
+    if (currentUser !== null) {
+        document.querySelector('.account-info').innerHTML = "Thông tin tài khoản";
+        document.querySelector('.account-info').href = "account-information.html";
+        document.querySelector('.account-cart').innerHTML = "Giỏ hàng";
+        document.querySelector('.logOut').innerHTML = "Đăng xuất";
+        document.querySelector('.logOut').style.color = "red";
+        document.querySelector('.account-cart').href = "cart-products.html";
+    } else {
+        document.querySelector('.logOut').style.display = "none";
+        document.getElementById('cart-product').href = "login.html";
+        document.getElementById('mini-cart-product').href = "login.html";
+    }
+
+    function logOut() {
+        localStorage.removeItem("current_user");
+        localStorage.removeItem("idKey");
+        location.href = "login.html";
+    }
+
+
 </script>
 <script src="script/fixedBar.js"></script>
 </body>

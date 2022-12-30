@@ -173,6 +173,7 @@
                     }
                 }
             }
+            console.log(password)
 
             if(password.trim() == "") {
                 checkValidate = false;
@@ -180,6 +181,7 @@
                 return;
             }
         }
+
 
         function findByEmail() {
             for (let i = 0; i < listUser.length; i++) {
@@ -189,19 +191,22 @@
             }
         }
 
-        currentUser = JSON.parse(localStorage.getItem("current_user"))
-
         function login() {
             if(checkValidate) {
                 //     Kiểm tra đúng mật khẩu chưa
                 let checkPass = false;
                 for (let i = 0; i < listUser.length; i++) {
                     if(email == listUser[i].email && password == listUser[i].password) {
-                        currentUser = (listUser[i]);
+                        currentUser = listUser[i];
+                        // console.log(listUser[i].password, password)
+                        // console.log(email, listUser[i].email)
                         checkPass = true;
                     } else {
-                        checkPass = false;
-                        document.getElementById('validatePassword').innerHTML = "Wrong Password! Please try again!"
+                        if(email == listUser[i].email && password !== listUser[i].password) {
+                            checkPass = false;
+                            document.getElementById('validatePassword').innerHTML = "Wrong Password! Please try again!"
+                            return;
+                        }
                     }
                 }
 
@@ -213,10 +218,6 @@
                     let id = findByEmail(email).id;
                     localStorage.setItem('idKey', id)
                     location.href = 'index.html';
-                } else {
-                    checkValidate = false;
-                    document.getElementById('validatePassword').innerHTML = "Password is wrong!";
-                    return;
                 }
             }
         }
