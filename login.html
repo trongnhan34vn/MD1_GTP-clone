@@ -32,7 +32,7 @@
             <div class="header-navbar__contact-item">
                 <i class="fa-solid fa-phone"></i>
                 <a href="">Mua hàng online: 0969436769</a>
-            </div> 
+            </div>
            </div>
            <div class="header-navbar-feat">
                <div class="grid">
@@ -189,20 +189,27 @@
             }
         }
 
+        currentUser = JSON.parse(localStorage.getItem("current_user"))
+
         function login() {
             if(checkValidate) {
                 //     Kiểm tra đúng mật khẩu chưa
                 let checkPass = false;
                 for (let i = 0; i < listUser.length; i++) {
                     if(email == listUser[i].email && password == listUser[i].password) {
+                        currentUser = (listUser[i]);
                         checkPass = true;
+                    } else {
+                        checkPass = false;
+                        document.getElementById('validatePassword').innerHTML = "Wrong Password! Please try again!"
                     }
                 }
+
                 if(checkPass) {
                     checkValidate = true;
                     document.getElementById('validatePassword').innerHTML = "";
-                    currentUser = findByEmail(email).firstName + " " + findByEmail(email).lastName;
-                    localStorage.setItem("current_user", currentUser);
+                    // currentUser = findByEmail(email).firstName + " " + findByEmail(email).lastName;
+                    localStorage.setItem("current_user", JSON.stringify(currentUser));
                     let id = findByEmail(email).id;
                     localStorage.setItem('idKey', id)
                     location.href = 'index.html';

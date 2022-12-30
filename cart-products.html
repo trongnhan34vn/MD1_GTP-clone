@@ -61,10 +61,10 @@
                         <ul class="header-navbar__features">
                             <li class="nav-account"><span><i class="bi bi-person-circle"></i><span id="account">Tài khoản</span></span>
                                 <!-- Regis & Login -->
-                                <div class="nav-account-container">
-                                    <a class="sign-up account-info" href="register.html">Đăng kí</a>
-                                    <a class="sign-in account-cart" href="login.html">Đăng nhập</a>
-                                    <a onclick="logOut()" class="logOut" href=""></a>
+                                <div class="nav-account-container nav-account-container--cart-products">
+                                    <a class="sign-up account-info" href="#">Đăng kí</a>
+                                    <a class="sign-in account-cart" href="#">Đăng nhập</a>
+                                    <a onclick="logOut()" class="logOut" href="login.html"></a>
                                 </div>
                             </li>
                         </ul>
@@ -122,7 +122,7 @@
                             <h1>Total: <span id="totalPrice"></span></h1>
                         </div>
                         <div class="check-out-button">
-                            <button class="btn">Check Out</button>
+                            <button onclick="checkOut()" class="btn">Check Out</button>
                         </div>
                     </div>
                 </div>
@@ -158,24 +158,25 @@
     </div>
 </div>
 <script>
-    let currentUser = localStorage.getItem("current_user");
+    let currentUser = JSON.parse(localStorage.getItem("current_user"));
     if (currentUser !== null) {
-        document.getElementById('account').innerHTML = currentUser;
+        document.getElementById('account').innerHTML = currentUser.firstName + " " + currentUser.lastName;
         document.querySelector('.account-info').innerHTML = "Thông tin tài khoản";
         document.querySelector('.account-cart').innerHTML = "Giỏ hàng";
         document.querySelector('.logOut').innerHTML = "Đăng xuất";
         document.querySelector('.logOut').style.color = "red";
+        document.querySelector('.account-info').href = "account-information.html"
     } else {
         document.querySelector('.logOut').style.display = "none";
     }
 
     function logOut() {
         localStorage.removeItem("current_user");
-        location.reload();
+        location.href = "login.html";
     }
 
     let listProducts = JSON.parse(localStorage.getItem('list_product'));
-    let cartList = JSON.parse(localStorage.getItem('detectID'));
+    let cartList = JSON.parse(localStorage.getItem('cartList'));
     if (cartList == null) {
         cartList = []
     } else {
@@ -202,7 +203,7 @@
                              alt="">
                     </td>
                     <td>
-                        <p style="font-weight: bold; text-align: left; padding-right: 8px">${cartList[i].name}</p>
+                        <p style="font-weight: bold; text-align: left;">${cartList[i].name}</p>
                     </td>
                     <td style="color: red;">${formatNumber(cartList[i].price)}</td>
                     <td><input oninput="changeQuantity(${cartList[i].id})" style="text-align: center" id="qt + ${cartList[i].id}" value="${cartList[i].quantity}" type="number"></td>
@@ -216,8 +217,6 @@
         document.getElementById('totalPrice').innerText = formatNumber(total);
     }
 
-    let total;
-
     function changeQuantity(index) {
         let getIndexTd = "id" + " + " + index.toString();
         let getIndexTdinput = "qt" + " + " + index.toString();
@@ -230,11 +229,6 @@
             }
         }
         showCart()
-        // let test = document.getElementsByClassName('total')
-        // total = cartList.reduce(function (total, obj) {
-        //     return total+obj.price* obj.quantity     // obj => obj.price * obj.quantity
-        // },0)
-        // document.getElementById('totalPrice').innerText = total;
     }
 
     showCart();
@@ -248,8 +242,8 @@
                 break;
             }
         }
-        localStorage.removeItem('detectID');
-        localStorage.setItem('detectID', JSON.stringify(cartList));
+        localStorage.removeItem('cartList');
+        localStorage.setItem('cartList', JSON.stringify(cartList));
         if (cartList.length == 0) {
             location.href = "index.html";
         }
@@ -263,7 +257,6 @@
         let productSearch = document.getElementById('searchProduct').value;
         if (productSearch.trim() == "") {
             showCart();
-            console.log('ngủ đê')
         } else {
             listSearch = [];
             for (let i = 0; i < cartList.length; i++) {
@@ -293,18 +286,25 @@
                              alt="">
                     </td>
                     <td>
-                        <p style="font-weight: bold; text-align: left; padding-right: 8px">${listSearch[i].name}</p>
+                        <p style="font-weight: bold; text-align: left;">${listSearch[i].name}</p>
                     </td>
                     <td style="color: red" id="price">${formatNumber(listSearch[i].price)}</td>
-                    <td><input oninput="" style="text-align: center" id="countProducts" value="${(cartList[i].quantity)}" type="number"></td>
-                    <td style="color: red">${formatNumber((cartList[i].price * cartList[i].quantity))}</td>
+                    <td><input oninput="" style="text-align: center" id="countProducts" value="${(listSearch[i].quantity)}" type="number"></td>
+                    <td style="color: red">${formatNumber((listSearch[i].price * listSearch[i].quantity))}</td>
                     <td>
-                        <button onclick="deleteProduct()">Delete</button>
+
                     </td>
                 </tr>`
         }
         document.getElementById('draw-table').innerHTML = drawTable;
         document.getElementById('totalPrice').innerHTML = formatNumber(total);
+    }
+
+    // Xác nhận đơn hàng
+
+    function checkOut() {
+        localStorage.removeItem("cartList");
+        location.href = "validateOrder.html";
     }
 
     function formatNumber(number) {

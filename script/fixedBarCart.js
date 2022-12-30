@@ -12,19 +12,3 @@ window.addEventListener("scroll", function (e) {
     }
 })
 
-// let opacity = 1;
-// let decreaseOpacity = 0.1;
-
-// window.addEventListener('scroll',function () {
-//     hideCheckCart();
-// })
-// function hideCheckCart() {
-//    // let id = requestAnimationFrame(hideCheckCart)
-//    //  checkCart.style.opacity = parseInt(checkCart.style.opacity) - decreaseOpacity
-//    //  if (opacity <= 0) {
-//    //      cancelAnimationFrame(id)
-//    //  }
-//     console.log("hello")
-// }
-// checkCart.style.opacity = "0";
-// console.log( checkCart.style.opacity)

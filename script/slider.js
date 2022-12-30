@@ -5,7 +5,6 @@ window.addEventListener("load", function () {
     const prevBtn = document.querySelector('.slider-prev');
     const sliderItems = document.querySelectorAll('.slider-item');
     const sliderItemWidth = window.innerWidth;
-    console.log(sliderItemWidth);
     const slideLength = sliderItems.length;
     let positionX = 0;
     let index = 0;

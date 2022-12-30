@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Guitar Plus</title>
+    <title>Thông tin tài khoản</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300&family=Roboto:ital,wght@0,500;0,700;1,300&display=swap"
@@ -72,20 +72,20 @@
                                     <div class="nav-account-container">
                                         <a class="sign-up account-info" href="register.html">Đăng kí</a>
                                         <a class="sign-in account-cart" href="login.html">Đăng nhập</a>
-                                        <a onclick="logOut()" class="logOut" href=""></a>
+                                        <a onclick="logOut()" class="logOut" href="login.html"></a>
                                     </div>
                                 </li>
-                                <li class="mini-cart-contain"><a id="cart-product" href="cart-products.html">
+                                <li class="mini-cart-contain"><a href="cart-products.html">
                                     <span><i class="bi bi-bag-fill"></i> Giỏ hàng</span><span id="count"></span></a>
                                     <div class="mini-cart">
                                         <h3>Thông tin giỏ hàng</h3>
                                         <div id="showMiniCart" class="mini-cart-body">
-<!--                                            Đây là giỏ hàng-->
-<!--                                            <img src="https://bizweb.dktcdn.net/100/187/527/themes/504306/assets/empty_cart.png?1666747878392" alt="">-->
+
                                         </div>
                                         <div class="mini-cart-footer">
-                                            <p class="mini-cart__products-remain">Còn <span id="productsRemain"></span> sản phẩm</p>
-                                            <a id="mini-cart-product" href="cart-products.html">Xem giỏ hàng</a>
+                                            <p class="mini-cart__products-remain">Còn <span id="productsRemain"></span>
+                                                sản phẩm</p>
+                                            <a href="cart-products.html">Xem giỏ hàng</a>
                                         </div>
                                     </div>
                                 </li>
@@ -98,102 +98,65 @@
     </div>
     <div class="path path-header">
         <div class="grid">
-            <h1>Trang chủ</h1>
+            <h1>Trang chủ / Thông tin tài khoản / Xác nhận thông tin tài khoản</h1>
         </div>
-    </div>
-    <div class="slider">
-        <i class="fa-solid fa-angle-left slider-prev"></i>
-        <div class="slider-wraper">
-            <div class="slider-main">
-                <div class="slider-item">
-                    <img src="https://theme.hstatic.net/200000388065/1000766714/14/slideshow_1.jpg?v=111" alt="">
-                </div>
-                <div class="slider-item">
-                    <img src="https://theme.hstatic.net/200000388065/1000766714/14/slideshow_2.jpg?v=111" alt="">
-                </div>
-                <div class="slider-item">
-                    <img src="https://theme.hstatic.net/200000388065/1000766714/14/slideshow_3.jpg?v=111" alt="">
-                </div>
-                <div class="slider-item">
-                    <img src="https://scontent.fsgn5-3.fna.fbcdn.net/v/t39.30808-6/314945408_6480092718672990_4266973180278836089_n.jpg?stp=cp6_dst-jpg&_nc_cat=110&ccb=1-7&_nc_sid=730e14&_nc_ohc=53m1ztDn6oUAX8u1ktz&tn=QzCKxlsIZerXC-UL&_nc_ht=scontent.fsgn5-3.fna&oh=00_AfCr1VbI0grjK2jCXhTdkOo7AfVPtonOlQVbEOTeSXGWYw&oe=63AE909C"
-                         alt="">
-                </div>
-                <div class="slider-item">
-                    <img src="https://scontent.fhan5-9.fna.fbcdn.net/v/t39.30808-6/295924236_6136404549708477_3772233517112393539_n.jpg?stp=cp6_dst-jpg&_nc_cat=109&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=BgBqAS1wlIIAX_CqGjI&_nc_ht=scontent.fhan5-9.fna&oh=00_AfBnugGej6z1U26rAsmyWD1L5IBuXna24tHvWmQjHj6vDw&oe=63AFA1AB"
-                         alt="">
-                </div>
-            </div>
-        </div>
-        <i class="fa-solid fa-angle-right slider-next"></i>
     </div>
     <div class="products">
         <div class="grid">
             <div class="best-sale-title">
                 <a href="#">
-                    Sản phẩm bán chạy
+                    Thông tin tài khoản
                 </a>
             </div>
             <div class="best-sale-products">
-                <div class="grid__row draw">
-                    <!--                    <div class="grid__column-12">-->
-                    <!--                        <div class="best-sale-products-item-wrap">-->
-                    <!--                            <div style="background-image: url(https://product.hstatic.net/200000388065/product/859cf541-b3c3-40bc-a43c-2ab90feb1e55_6f98e69436884d77a3cf97a4b0f9683f_large.jpg)"-->
-                    <!--                                 class="best-sale-products-img">-->
-
-                    <!--                            </div>-->
-                    <!--                            <div class="best-sale-products-desc">-->
-                    <!--                                <h3 class="best-sale-products__title name-products">Amp Marshal MG10G 10W</h3>-->
-                    <!--                                <h3 class="best-sale-products__price price">2.000.000 <span>đ</span></h3>-->
-                    <!--                            </div>-->
-                    <!--                            <a id="add-cart" class="best-sale-products__link cart-link add-cart" href="cart-products.html">-->
-                    <!--                                <div class="best-sale-products__extention">-->
-                    <!--                                    <span>Thêm vào giỏ hàng</span>-->
-                    <!--                                </div>-->
-                    <!--                            </a>-->
-                    <!--                        </div>-->
-                    <!--                    </div>-->
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="extention">
-        <div class="extention-img"
-             style="background-image: url(https://theme.hstatic.net/200000388065/1000766714/14/background_banner.jpg?v=111)">
-
-        </div>
-        <div class="extention-service">
-            <div class="grid">
-                <div class="grid__row">
-                    <div class="grid__column-12-4">
-                        <div class="extention-service-wrap">
-                            <img src="https://theme.hstatic.net/200000388065/1000766714/14/vice_item_1.png?v=111"
-                                 alt="">
-                            <h3>Giao hàng miễn phí</h3>
-                            <p>với đơn hàng từ 500k trở lên</p>
-                        </div>
-                    </div>
-                    <div class="grid__column-12-4">
-                        <div class="extention-service-wrap">
-                            <img src="https://theme.hstatic.net/200000388065/1000766714/14/vice_item_2.png?v=111"
-                                 alt="">
-                            <h3>Hỗ trợ online 24/7</h3>
-                            <p>Hỗ trợ online/offline 24/7</p>
-                        </div>
-                    </div>
-                    <div class="grid__column-12-4">
-                        <div class="extention-service-wrap">
-                            <img src="https://theme.hstatic.net/200000388065/1000766714/14/vice_item_3.png?v=111"
-                                 alt="">
-                            <h3>Đặt hàng trực tuyến</h3>
-                            <p>Hotline : 0969436769</p>
-                        </div>
-                    </div>
-                    <div class="grid__column-12-4">
-                        <div class="extention-service-wrap">
-                            <img src="https://theme.hstatic.net/200000388065/1000766714/14/vice_item_4.png?v=111"
-                                 alt="">
-                            <h3>Miễn phí đổi trả</h3>
-                            <p>Trong vòng 7 ngày</p>
+                <div class="grid">
+                    <div class="account-info-container">
+                        <div class="grid__row">
+                            <div class="grid__column-12">
+                                <div class="acc-info">
+                                    <h3><i class="bi bi-person-circle"></i> <span id="accName">Nguyễn Nhân</span></h3>
+                                    <div class="acc-info-feature">
+                                        <h3>My account</h3>
+                                        <div class="acc-info-detail">
+                                            <p>Profile</p>
+                                            <p>Change Password</p>
+                                            <p>Address</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="grid__column-12-10">
+                                <div class="acc-info-edit">
+                                    <table>
+                                        <tbody id="drawInfoUser">
+                                        <tr>
+                                            <td>Name:</td>
+                                            <td>Nhân <a href="">Change</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Gender:</td>
+                                            <td>Male <a href="">Change</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Date of Birth:</td>
+                                            <td><input type="date"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Address:</td>
+                                            <td><a href="">Edit</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Email:</td>
+                                            <td>trongnhan34vn@gmail.com <a href="">Change</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Password:</td>
+                                            <td>******* <a href="">Change</a></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -235,39 +198,7 @@
         listProducts = [];
     }
     let currentUser = JSON.parse(localStorage.getItem("current_user"));
-
-    function showListProducts() {
-        let draw = '';
-        let link;
-        if (currentUser !== null) {
-            link = "javascript:void(0)"; // disable thẻ a. ko bị nhảy, không chuyển trang
-        } else {
-            link = "login.html";
-        }
-        for (let i = 0; i < listProducts.length; i++) {
-            draw += `<div class="grid__column-12">
-                        <div class="best-sale-products-item-wrap">
-                            <div style="background-image: url(${listProducts[i].img})"
-                                 class="best-sale-products-img">
-
-                            </div>
-                            <div class="best-sale-products-desc">
-                                <h3 class="best-sale-products__title name-products">${listProducts[i].name}</h3>
-                                <h3 class="best-sale-products__price price">${listProducts[i].price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
-            } <span>đ</span></h3>
-                            </div>
-                            <a id="${listProducts[i].id}" class="best-sale-products__link cart-link add-cart" href=${link} onclick="getIdProducts(${listProducts[i].id})">
-                                <div class="best-sale-products__extention">
-                                    <span>Thêm vào giỏ hàng</span>
-                                </div>
-                            </a>
-                        </div>
-                    </div>`;
-        }
-        document.querySelector('.draw').innerHTML = draw;
-    }
-
-    showListProducts()
+    console.log(currentUser)
 
     // Kiểm tra đăng nhập
     if (currentUser !== null) {
@@ -278,10 +209,9 @@
         document.querySelector('.logOut').innerHTML = "Đăng xuất";
         document.querySelector('.logOut').style.color = "red";
         document.querySelector('.account-cart').href = "cart-products.html";
+
     } else {
         document.querySelector('.logOut').style.display = "none";
-        document.getElementById('cart-product').href = "login.html";
-        document.getElementById('mini-cart-product').href = "login.html";
     }
 
     // Đăng xuất
@@ -289,14 +219,14 @@
     function logOut() {
         localStorage.removeItem("current_user");
         localStorage.removeItem("idKey");
-        location.reload();
+        location.href =  "login.html";
     }
 
     // lấy toàn bộ thông tin sản phẩm lên local push vào mảng để vẽ
 
     let cartList = JSON.parse(localStorage.getItem('cartList'));
     if (cartList == null) {
-        cartList = [];
+        cartList = []
     }
 
     function countProducts() {
@@ -306,7 +236,7 @@
             countProducts += cartList[i].quantity;
         }
         document.getElementById('count').innerHTML = countProducts;
-        if(cartList.length < 4) {
+        if (cartList.length == 0) {
             remainProduct = 0;
         } else {
             remainProduct = countProducts - 4;
@@ -316,48 +246,13 @@
 
     countProducts()
 
-    function getIdProducts(id) {
-        let product = findById(id);
-        let status = false
-        for (let i = 0; i < cartList.length; i++) {
-            if (cartList[i].id == id) {
-                cartList[i].quantity += 1;
-                console.log(cartList[i].quantity);
-                console.log(cartList.length)
-                status = true
-                break;
-            }
-        }
-        if (status == false) {
-            cartList.push({
-                userId: currentUser.id,
-                id: id,
-                price: product.price,
-                name: product.name,
-                quantity: 1,
-                image: product.img
-            });
-        }
-        localStorage.setItem('cartList', JSON.stringify(cartList));
-        countProducts()
-        showMiniCart()
-    }
 
-    function findById(id) {
-        for (let i = 0; i < listProducts.length; i++) {
-            if (listProducts[i].id == id) {
-                return listProducts[i];
-            }
-        }
-        return null;
-    }
-
-//     lấy sản phẩm về mini cart
+    //     lấy sản phẩm về mini cart
+    console.log(cartList);
+    let  size = cartList.length>=4 ? 4 : cartList.length
 
     function showMiniCart() {
         let showMiniCart = "";
-        let  size = cartList.length>=4 ? 4 : cartList.length
-
         for (let i = 0; i < size; i++) {
             showMiniCart += `<a href="cart-products.html" class="mini-cart-item">
                                                 <div class="mini-cart-products">
@@ -379,8 +274,51 @@
     function formatNumber(number) {
         return new Intl.NumberFormat('de-DE', {style: 'currency', currency: 'VND'}).format(number)
     }
+
+    //     Lấy thông tin tài khoản
+
+    let listUsers = JSON.parse(localStorage.getItem('list_user'));
+    if (listUsers == null) {
+        listUsers = [];
+    }
+    console.log(listUsers)
+
+    // Điền form thông tin tài khoản
+
+    function getInfoUser() {
+        let drawUserInfo = '';
+        let accName = currentUser.firstName + " " + currentUser.lastName;
+                drawUserInfo += `<tr>
+                                                <td>Name:</td>
+                                                <td>${currentUser.firstName + " " + currentUser.lastName} <a href="updateInfoUser.html">Change</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Gender:</td>
+                                                <td>${currentUser.gender} <a href="updateInfoUser.html">Change</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Date of Birth:</td>
+                                                <td>${currentUser.birth} <a href="updateInfoUser.html">Change</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Address:</td>
+                                                <td><a href="">Edit</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Email:</td>
+                                                <td>${currentUser.email}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Password:</td>
+                                                <td>******* <a href="updateInfoUser.html">Change</a></td>
+                                            </tr>`
+
+        document.getElementById('drawInfoUser').innerHTML = drawUserInfo;
+        document.getElementById('accName').innerHTML = accName;
+    }
+
+    getInfoUser()
 </script>
-<script src="script/slider.js"></script>
 <script src="script/fixedBar.js"></script>
 </body>
 
